@@ -11,9 +11,9 @@ If you have already all tools to run one project of react native:
 3)Run project with np "npx react-native run-android"
 
 If you have't already all tools to run one project of react native:
-1)You need install node js to have npm (node package module) and run project
-2)You need  install  Android studio, you will install it by defect. After to install program condigure it
-3)Install Chocholatey is other gestor package  https://chocolatey.org/
-4)Download or clone repository
-5)Write and run "npm install" comand, to install dependencies
-6)Run project with np "npx react-native run-android"
+**1)You need install node js to have npm (node package module) and run project
+**2)You need  install  Android studio, you will install it by defect. After to install program condigure it
+**3)Install Chocholatey is other gestor package  https://chocolatey.org/
+**4)Download or clone repository
+**5)Write and run "npm install" comand, to install dependencies
+**6)Run project with np "npx react-native run-android"

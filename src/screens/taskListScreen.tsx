@@ -7,9 +7,6 @@ export default function TaskList() {
     <View>
       {a.map(task => (
         <View>
-          {
-            //!Aqui tengo que utilizar el mismo componente de Task pero esconder cosas de acuerdo a la ubicacion
-          }
           <Text>{task}</Text>
         </View>
       ))}
@@ -18,8 +15,8 @@ export default function TaskList() {
 }
 
 //{String(task)}
-//Es parecido a las bases de datos no relacionles
-let stored = [
+//Es parecido a las bases de datos no relacionles, de esta forma guardare las listas
+let storage = [
   {
     id: 1,
     peopel: ['carlos', 'aramis', 'bigote', 'facundo'],

@@ -19,11 +19,14 @@ export const storeData = async ({tasks,title}:StoreData) => {
   try {
     const savedList = await getData() 
     const newId = idGenerate()
+    const newDate = String(new Date())
     const newEntityTask:EntityTaskSaved = {
       id:newId,
       person:"Aramis",
       title:title,
-      subTask:tasks
+      subTask:tasks,
+      numberOfTask:tasks.length,
+      date: newDate.slice(0,24)
     }
     const newList = [...savedList,newEntityTask]
     const jsonNewList = JSON.stringify(newList)

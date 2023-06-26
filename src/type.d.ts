@@ -16,6 +16,8 @@ export interface EntityTaskSaved {
   person:string
   title:string
   subTask:TaskTypes[]
+  numberOfTask:number
+  date:any
 }
 
 export interface StoreData {

@@ -1,31 +1,26 @@
 import {Button, Text, View} from 'react-native';
-import {useEffect, useState} from 'react';
-import {EntityTaskSaved, TaskTypes} from '../type';
-import {getData} from '../controllers/createNewTask/createNewTask';
 import EmptyTask from '../components/emptyTaskScreen/emptyTaskScreen';
+import TaskListRenderTitle from '../components/taskListRender/taskListRenderTitle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import TaskListRender from '../components/taskListRender/taskListRender';
+import {useCheckStatus} from '../customHook/customHook';
 
-const useCheckStatus = () => {
-  const [taskSaved, setTaskSaved] = useState<EntityTaskSaved[]>([]);
-  useEffect(() => {
-    getData().then(taskSaved => setTaskSaved(taskSaved));
-  }, []);
-  return {taskSaved};
-};
 export default function TaskList({navigation}: {navigation: any}) {
   const {taskSaved} = useCheckStatus();
 
   return (
     <View style={{flex: 1, backgroundColor: '#0E1820'}}>
       {taskSaved.length ? (
-        <TaskListRender taskSaved={taskSaved} />
+        <TaskListRenderTitle taskSaved={taskSaved} navigation={navigation} />
       ) : (
         <EmptyTask navigation={navigation} />
       )}
       <Button
         title="Create new taks list"
         onPress={() => navigation.navigate('NewTask')}
+      />
+      <Button
+        title="clear"
+        onPress={() => AsyncStorage.setItem('task-saved', '[]')}
       />
     </View>
   );

@@ -1,39 +1,95 @@
-import React from 'react';
-import {Button, Text, TouchableOpacity, View} from 'react-native';
+import {Button, Text, View} from 'react-native';
+import {useEffect, useState} from 'react';
+import {EntityTaskSaved, TaskTypes} from '../type';
+import {getData} from '../controllers/createNewTask/createNewTask';
+import EmptyTask from '../components/emptyTaskScreen/emptyTaskScreen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import TaskListRender from '../components/taskListRender/taskListRender';
 
+const useCheckStatus = () => {
+  const [taskSaved, setTaskSaved] = useState<EntityTaskSaved[]>([]);
+  useEffect(() => {
+    getData().then(taskSaved => setTaskSaved(taskSaved));
+  }, []);
+  return {taskSaved};
+};
 export default function TaskList({navigation}: {navigation: any}) {
-  let a = [1, 2, 3, 4, 5];
+  const {taskSaved} = useCheckStatus();
+
   return (
-    <View>
-      {a.map(task => (
-        <View>
-          <Text>{task}</Text>
-        </View>
-      ))}
-      <Button title="Go back" onPress={() => navigation.goBack()} />
+    <View style={{flex: 1, backgroundColor: '#0E1820'}}>
+      {taskSaved.length ? (
+        <TaskListRender taskSaved={taskSaved} />
+      ) : (
+        <EmptyTask navigation={navigation} />
+      )}
+      <Button
+        title="Create new taks list"
+        onPress={() => navigation.navigate('NewTask')}
+      />
     </View>
   );
 }
 
 //{String(task)}
 //Es parecido a las bases de datos no relacionles, de esta forma guardare las listas
+
 let storage = [
   {
     id: 1,
     peopel: ['carlos', 'aramis', 'bigote', 'facundo'],
     //! La c: es para marcar que es un comentario y no una subTask
-    subTask: ['algo', 'c:algo', 'algo', 'c:algo', 'algo', 'c:algo'],
+    subTask: [
+      {
+        text: 'algo',
+        type: 'taskForMake',
+      },
+      {
+        text: 'algo',
+        type: 'comment',
+      },
+      {
+        text: 'algo',
+        type: 'taskForMake',
+      },
+    ],
   },
   {
     id: 2,
     peopel: ['carlos', 'aramis', 'bigote', 'facundo'],
     //! La c: es para marcar que es un comentario y no una subTask
-    subTask: ['algo', 'c:algo', 'algo', 'c:algo', 'algo', 'c:algo'],
+    subTask: [
+      {
+        text: 'algo',
+        type: 'taskForMake',
+      },
+      {
+        text: 'algo',
+        type: 'comment',
+      },
+      {
+        text: 'algo',
+        type: 'taskForMake',
+      },
+    ],
   },
   {
     id: 3,
     peopel: ['carlos', 'aramis', 'bigote', 'facundo'],
     //! La c: es para marcar que es un comentario y no una subTask
-    subTask: ['algo', 'c:algo', 'algo', 'c:algo', 'algo', 'c:algo'],
+    subTask: [
+      {
+        text: 'algo',
+        type: 'taskForMake',
+      },
+      {
+        text: 'algo',
+        type: 'comment',
+      },
+      {
+        text: 'algo',
+        type: 'taskForMake',
+      },
+    ],
   },
 ];

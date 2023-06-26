@@ -1,5 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Image, Text, View} from 'react-native';
+import {Image, Text} from 'react-native';
 interface TypeRenderViewOnButton {
   cloudUrlImage: (url: string) => JSX.Element;
   text: (text: string) => JSX.Element;
@@ -16,9 +15,4 @@ const planeText = (text: string) => <Text>{text}</Text>;
 export let typeRenderViewOnButton: TypeRenderViewOnButton = {
   cloudUrlImage: cloudImage,
   text: planeText,
-};
-
-const checkSavedTask = async () => {
-  //Esto no anda, tengo que ver como guardar cosas
-  const taskSaved = await AsyncStorage.getItem('taskSaved');
 };

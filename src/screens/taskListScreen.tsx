@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Button, Text, TouchableOpacity, View} from 'react-native';
 
-export default function TaskList() {
+export default function TaskList({navigation}: {navigation: any}) {
   let a = [1, 2, 3, 4, 5];
   return (
     <View>
@@ -10,6 +10,7 @@ export default function TaskList() {
           <Text>{task}</Text>
         </View>
       ))}
+      <Button title="Go back" onPress={() => navigation.goBack()} />
     </View>
   );
 }

@@ -20,12 +20,13 @@ export default function CreateNewTaskList() {
   return (
     <View>
       <TextInput
-        style={{width: 500, height: 10, backgroundColor: 'blue'}}
+        style={{width: 500, height: 10, backgroundColor: 'gray'}}
         onSubmitEditing={inputText =>
           handleAddNewTask(inputText.nativeEvent.text)
         }
         onChangeText={txt => setText(txt)}
         onPressOut={txt => setText('')}
+        placeholder="create your note"
         value={text}
       />
       {taskList.map(taskForRender => (

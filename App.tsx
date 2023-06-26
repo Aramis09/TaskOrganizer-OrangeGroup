@@ -1,18 +1,18 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React from 'react';
-import {SafeAreaView} from 'react-native';
-import Navigation from './src/navigation';
 import EmptyTask from './src/screens/emptyTaskScreen';
-function App(): JSX.Element {
-  return (
-    // <NavigationContainer>
-    <Navigation />
-    // <SafeAreaView>
-    // </SafeAreaView>
+import TaskList from './src/screens/taskListScreen';
+import CreateNewTaskList from './src/screens/createNewTaskListScreen';
+const Stack = createNativeStackNavigator();
 
-    // </NavigationContainer>
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="EmptyTask" component={EmptyTask} />
+        <Stack.Screen name="NewTask" component={CreateNewTaskList} />
+        <Stack.Screen name="TaskList" component={TaskList} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-export default App;

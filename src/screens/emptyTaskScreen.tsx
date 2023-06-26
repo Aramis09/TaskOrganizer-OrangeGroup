@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity, Button} from 'react-native';
 import FloatingButton from '../components/floatingButton/floatingButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CreateNewTaskList from './createNewTaskListScreen';
 
-export default function EmptyTask() {
+export default function EmptyTask({navigation}: {navigation: any}) {
   //!Necesito hacer un cambio de estilos de acuerdo a la bandera "flagToShow"
   const [texto, setTexto] = useState<string>();
   const storeData = async (value: any) => {
@@ -31,17 +31,12 @@ export default function EmptyTask() {
     <View>
       <Text>Upps... it’s empty</Text>
       <FloatingButton
-        onPress={storeData}
+        onPress={() => navigation.navigate('NewTask')}
         title="https://res.cloudinary.com/dynnwv7md/image/upload/v1687138404/plus_wtnjg3.png"
         type="cloudUrlImage"
         payload="algo nose que"
         styles={{}}
       />
-      {
-        //!Esto de abajo debe estar en otra ruta
-      }
-
-      <CreateNewTaskList />
 
       <Text>Please add a new task.</Text>
     </View>

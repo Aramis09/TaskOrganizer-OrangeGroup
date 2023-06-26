@@ -7,9 +7,9 @@ import {
   createObjToSave,
   storeData,
 } from '../../controllers/createNewTask/createNewTask';
-import {TaskTypes} from '../../type';
+import {StoreData, TaskTypes} from '../../type';
 
-export default function CreateNewTaskList() {
+export default function CreateNewTaskList({navigation}: {navigation: any}) {
   const [taskList, setTaskList] = useState<TaskTypes[]>([]);
   const [text, setText] = useState<string>('');
   const [title, setTitle] = useState<string>('');
@@ -18,6 +18,12 @@ export default function CreateNewTaskList() {
     const typeInput = createObjToSave(inputText);
     const newTaskArray = [...taskList, typeInput];
     setTaskList(newTaskArray);
+  };
+
+  const handleSaveData = (data: StoreData) => {
+    if (!taskList.length) return;
+    storeData(data);
+    navigation.navigate('Home');
   };
 
   return (
@@ -31,6 +37,7 @@ export default function CreateNewTaskList() {
         />
         <Text>{title}</Text>
       </View>
+
       <Text style={styles.text}>{text}</Text>
       {taskList.map(taskForRender => (
         <TextInTask
@@ -51,7 +58,7 @@ export default function CreateNewTaskList() {
       />
       <Text>{text}</Text>
       <FloatingButton
-        onPress={storeData}
+        onPress={handleSaveData}
         payload={{tasks: taskList, title: title}}
         title="Save new list"
         type="text"

@@ -10,7 +10,6 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={TaskList} />
-        {/* <Stack.Screen name="EmptyTask" component={EmptyTask} /> */}
         <Stack.Screen name="NewTask" component={CreateNewTaskList} />
       </Stack.Navigator>
     </NavigationContainer>

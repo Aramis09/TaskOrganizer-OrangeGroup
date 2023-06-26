@@ -1,5 +1,6 @@
-import React, {useRef, useState} from 'react';
-import {Text, TextInput, View} from 'react-native';
+import {useState} from 'react';
+import {styles} from './styles/styles';
+import {TextInput, View, ScrollView} from 'react-native';
 import CheckBox from '../checkBox/checkBox';
 
 export default function TextInTask({
@@ -11,19 +12,14 @@ export default function TextInTask({
 }) {
   const [textShow, setTextShow] = useState(text);
   return (
-    <View>
+    <View style={styles.container}>
+      {type === 'taskForMake' ? <CheckBox /> : <></>}
       <TextInput
-        style={{
-          width: 500,
-          height: 100,
-          backgroundColor: 'violet',
-          borderColor: 'red',
-          margin: 10,
-        }}
+        style={styles.inputText}
         onChangeText={inputText => setTextShow(inputText)}
+        multiline={true}
         value={textShow}
       />
-      {type === 'taskForMake' ? <CheckBox /> : <></>}
     </View>
   );
 }
